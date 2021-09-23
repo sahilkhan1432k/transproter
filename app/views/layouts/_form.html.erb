@@ -1,0 +1,67 @@
+<form name="my-form" onsubmit="return validform()" action="success.php" method="">
+  <div class="form-group row">
+      <label for="full_name" class="col-md-4 col-form-label text-md-right">First Name</label>
+      <div class="col-md-6">
+        <%= text_field :first_name, autofocus: true %>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
+      <div class="col-md-6">
+        <%= text_field :last_name, autofocus: true %>
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="licence_number" class="col-md-4 col-form-label text-md-right"> Licence Number</label>
+      <div class="col-md-6">
+        <%= text_field :licence_number, autofocus: true %>
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="birthday" class="col-md-4 col-form-label text-md-right">birthday</label>
+      <div class="col-md-6">
+        <%= text_field :birthday, autofocus: true, autocomplete: "date" %>
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
+      <div class="col-md-6">
+        <%= text_field :address, autofocus: true, autocomplete: "string" %>
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="user_type" class="col-md-4 col-form-label text-md-right">User type</label>
+      <div class="col-md-6">
+        <%= text_field :user_type, autofocus: true, autocomplete: "string" %>
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="email" class="col-md-4 col-form-label text-md-right">Email </label>
+      <div class="col-md-6">
+        <%= email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+  </div>
+
+  <div class="form-group row">
+      <label for="password" class="col-md-4 col-form-label text-md-right">password</label>
+      <div class="col-md-6">
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= password_field :password, autocomplete: "new-password" %>
+      </div>
+  </div>
+  <div class="form-group row">
+    <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">Confirm password </label>
+    <div class="col-md-6">
+      <%= password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  </div>
+  
+    
+</form>

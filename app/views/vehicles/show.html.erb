@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @vehicle.name %>
+</p>
+
+<p>
+<%= image_tag(vehicle.avatar_tumbnail) if vehicle.avatar.attached? %>
+</p>
+
+<p>
+  <strong>Vechile number:</strong>
+  <%= @vehicle.vehicle_number %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @vehicle.color %>
+</p>
+
+<p>
+  <strong>Modle:</strong>
+  <%= @vehicle.modle %>
+</p>
+
+<%= link_to 'Edit', edit_vehicle_path %> |
+<%= link_to 'Back', vehicles_path %>

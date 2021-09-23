@@ -1,0 +1,37 @@
+
+  <div class = "row">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
+      <div class= "container">
+        <div class="text-center mt-4"></br></br>
+          <%= form_with(model: vehicle) do |form| %>
+            <% if vehicle.errors.any? %>
+              <div class="row justify-content-md-center">
+                <div id="error_explanation">
+                  <h2><%= pluralize(vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
+                  <ul>
+                    <% vehicle.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+            <div class="row justify-content-md-center">
+              <div class="col-8">
+                <%= form.file_field :avatar %>
+                <%= form.text_field :name, class:'form-label form-control', placeholder: 'Name'%>
+                <%= form.text_field :color, class:'form-label form-control', placeholder: 'color of vehicle' %>
+                <%= form.text_field :vehicle_number, class:'form-label form-control', placeholder: 'Vechile Number' %>
+                <%= form.number_field :modle, class:'form-label form-control', placeholder: 'Vechile Modle'%>
+                <div class="actions">
+                  <%= form.submit %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

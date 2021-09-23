@@ -1,0 +1,49 @@
+<nav id="navbar" class="navbar fixed-top navbar-expand-lg  ">
+  <div class= "mx-auto"> </div>
+  <ul>
+    <li><a class="nav-link active" href="/">Home</a></li>
+    
+
+    <% if user_signed_in? %>
+      <a class="nav-link" href="#services">
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete  %>
+      </a>
+      <li><a class="nav-link" href="#about">About</a></li>
+    
+    <a class="nav-link">
+    <%= link_to 'Profile', edit_user_registration_path  %>
+    
+    </a>
+    <a class="dropdown-toggle d-flex align-items-center hidden-arrow">
+      <if current_user.avatar.attached? >
+        <%= image_tag current_user.avatar.variant(resize_to_limit: [23, 23]), class: 'rounded-circle' %> 
+      <else>
+      <end>
+    </a>
+
+    <a class="nav-link">
+     <%= link_to 'Vehicle', vehicles_path  %>
+    </a>
+
+      
+    <% else %>
+    <a class="nav-link">
+    <%= link_to 'Sign in', new_user_session_path  %>
+    </a>
+    <a class="nav-link" href="#services">
+    <%= link_to 'Sign up', new_user_registration_path  %>
+    </a>
+    <a class="nav-link" href="#services">
+    
+    <% end %>
+    
+    <a class="nav-link scrollto p-3" href="#contact">Contact</a>
+    <!-- Avatar -->
+    </div>
+  </ul>
+  <i class="bi bi-list mobile-nav-toggle"></i>
+</nav><!-- .navbar -->
+
+
+
+<!------------- end  -------------->

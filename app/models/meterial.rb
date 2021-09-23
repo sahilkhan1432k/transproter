@@ -1,0 +1,2 @@
+class Meterial < ApplicationRecord
+end

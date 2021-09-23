@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<div class = "container p-5">
+  <h1 class= "text-center p-md-4">Vehicles             
+  <%= link_to 'Add New Vehicle', new_vehicle_path, class: 'btn btn-secondary' %></h1>
+  <div class = "row">
+    <% @vehicles.each do |vehicle| %>
+      <div class="col-4">
+        <div class="card m-1 ">
+          <if vehicle.avatar.attached?>
+            <%= image_tag vehicle.avatar.variant(resize_to_limit: [250, 192])%> 
+          <else>
+          <end> 
+          <div class="card-body md-4">
+            <h5 class="card-title"><%=link_to vehicle.name, vehicle %>  </h5>
+            <h5><%= vehicle.modle %> </h5>
+          </div></br>
+        </div>
+      </div>
+    <% end %>
+  </div><br>
+<div><br /> <br /> 
+<%= render 'layouts/footer'%>
