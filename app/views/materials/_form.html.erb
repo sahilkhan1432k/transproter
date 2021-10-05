@@ -1,0 +1,23 @@
+<div class = "row">
+  <div class="col-2">
+  </div>
+  <div class="col-8">
+    <div class= "container vehicle">
+      <div class="text-center mt-4"></br></br>
+        <%= form_with model: [ @plant, @plant.materials.build ] do |form| %>
+          <div class="row justify-content-md-center">
+            <div class="col-8">
+              <%= form.text_field :name , class:'form-label form-control', placeholder: 'Name'%>
+              <%= form.number_field :cost, class:'form-label form-control', placeholder: 'Cost' %>
+              <%= form.file_field :avatar,class:'form-label form-control' %>
+            <div class="actions text-start">
+              <%= link_to 'Back', @plant %>
+              <%= form.submit class: 'btn  btn btn-outline-primary text-end' %>
+            </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

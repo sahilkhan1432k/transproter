@@ -9,37 +9,37 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
           <div class="row justify-content-md-center">
-            <div class="field form-outline col-5 col-md-4 "
+            <div class="field form-outline col-8 "
                   id="pills-login"
                   role="tabpanel"
                   aria-labelledby="tab-login">
-                  <if current_user.avatar.attached? >
+                  <% if current_user.avatar.attached? %>
                     <%= image_tag current_user.avatar.variant(resize_to_limit: [30, 60]), class: 'rounded-circle' %> 
-                  <else>
-                  <end>
-                <%= f.file_field :avatar %>
+                  <%else%>
+                  <% end %>
                 <%= f.text_field :first_name, hautofocus: true, autocomplete: "text", class:'form-label form-control', placeholder: 'First name'  %>
                 <%= f.text_field :last_name, hautofocus: true, autocomplete: "text", class:'form-label form-control' , placeholder: 'Last name' %>
                 <%= f.text_field :licence_number, hautofocus: true, autocomplete: "int", class:'form-label form-control', placeholder: 'Licence number' %>
                 <%= f.date_field :birthday, hautofocus: true, class:'form-label form-control' , placeholder: 'Birthday' %>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-label form-control', placeholder: 'Email' %>
                 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
                 <% end %>
-                <%= f.password_field :password, autocomplete: "new-password" , placeholder: 'Password' %>
+                <%= f.password_field :password, autocomplete: "new-password" ,class:'form-label form-control', placeholder: 'Password' %>
                 <% if @minimum_password_length %>
                   <br />
                   <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: 'Password confirmation'%>
-                <%= f.password_field :current_password, autocomplete: "current-password", placeholder: 'Current password' %>
-
-                <%= f.submit "Update", class:'btn btn-primary' %> 
-                </br>
-                <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class:'btn btn-outline-danger' %> 
-                <%= link_to "Back", :back , class:'btn btn-dark'%>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class:'form-label form-control', placeholder: 'Password confirmation'%>
+                <%= f.password_field :current_password, autocomplete: "current-password",class:'form-label form-control', placeholder: 'Current password' %>
+                <%= f.file_field :avatar, class:'form-label form-control' %>
+                <div class="text-start">
+                  <%= link_to "Cancel", :back , class:'btn btn-danger  '%>
+                  <%= f.submit "Update", class:'btn btn-primary ' %><br /> Unhappy:(?
+                  <%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class:'text-danger' %>
+                </div>
+              </div>
             </div>
-          </div>
         <% end %>
       </div>
     </div>

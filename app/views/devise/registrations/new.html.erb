@@ -6,7 +6,7 @@
   </div>
   <div class="col-8">
     <div class= "container-sm sign-up ">
-      <div class="text-center mt-4"></br></br>
+      <div class=" mt-4"></br></br>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="row justify-content-md-center">
@@ -14,20 +14,20 @@
                 id="pills-login"
                 role="tabpanel"
                 aria-labelledby="tab-login">
-              
-                <%= f.file_field :avatar %>
-                <% if resource.avatar.attached? %>
-                <%= image_tag(resource.avatar) %>
-                <% else %>
-                <% end %>
               <%= f.text_field :first_name, hautofocus: true, autocomplete: "text", class:'form-label form-control', placeholder: 'First Name'  %>
               <%= f.text_field :last_name, hautofocus: true, autocomplete: "text", class:'form-label form-control' , placeholder: 'Last Name' %>
+               <%= f.select :user_type,  ['First driver', 'Second driver'] , {include_blank: "User type"}, {class:"form-select form-label "}%>
               <%= f.text_field :licence_number, hautofocus: true, autocomplete: "int", class:'form-label form-control' , placeholder: 'Licence Number' %>
               <%= f.date_field :birthday, hautofocus: true, class:'form-label form-control' , placeholder: 'Date of birth' %>
               <%= f.email_field :email, hautofocus: true, autocomplete: "email", class:'form-label form-control', placeholder: 'Email'  %>
               <%= f.password_field :password, autocomplete: "new-password", class:'form-label form-control', placeholder: 'Password'%>
               <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:'form-label form-control', placeholder: 'Password confirmation'%>
-              <div class="actions  col-md-12">
+              <%= f.file_field :avatar,class:'form-label form-control' %>
+                <% if resource.avatar.attached? %>
+                <%= image_tag(resource.avatar) %>
+                <% else %>
+                <% end %>
+              <div class="actions text-center  col-md-12">
                 <%= f.submit "Sign up", class: 'btn btn-primary' %></br> OR </br>
                 Already have an account ?<%= render "devise/shared/links" %>
               </div>

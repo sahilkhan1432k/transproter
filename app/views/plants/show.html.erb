@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+<div class="container p-md-5 ">
+  <div class="row">
+    <div class="col-4 md-5">
+    <table class="table ">
+      <tbody>
+        <tr>
+          <th scope="row">Name:</th>
+          <td><%= @plant.name %></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Address</th>
+          <td><%= @plant.address %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to 'Back', plants_path, class: 'btn  btn btn-outline-dark ' %>
+    <%= link_to 'Edit', edit_plant_path(@plant), class: 'fas btn btn-outline-info '  %>
+    <%= link_to 'Delete', @plant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fas btn btn-outline-danger '  %>
+    </div>
+    <div class="col-8 text-center avatar">
+      <p>
+        <% if @plant.avatar.attached? %>
+        <%= image_tag @plant.avatar.variant(resize_to_limit: [720, 287])%> 
+        <% else %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+<p id="notice"><%= notice %></p>
+<div class = "container p-5">
+  <h1 class= "text-center p-md-4">Materials</h1>
+    <p class="text-end">    <%= link_to 'New Material', new_plant_material_path(plant_id: @plant.id), class: 'btn btn-secondary te'  %>
+</p>
+    <div class = "row row-cols-1 row-cols-md-3 g-4">
+      <% @plant.materials.each do |material| %>
+      <div class="col-4">
+        <div class="card h-100" style="width: 16rem;">
+          <div >
+            <% if material.avatar.attached? %>
+              <%= image_tag material.avatar.variant(resize_to_limit: [250, 183]), class:'card-img-top'%> 
+            <% else %>
+            <% end %>
+          </div>
+          <div class="card-body ">
+            <h5 class="card-title"><%= link_to material.name, plant_material_path(plant_id: material.plant.id, id: material.id)  %></h5>
+            <h5><%= material.cost %></h5>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <br>
+</div>
+
+</br></br></br></br></br></br></br>

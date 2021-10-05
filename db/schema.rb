@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_063111) do
+ActiveRecord::Schema.define(version: 2021_10_04_055515) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,11 +49,13 @@ ActiveRecord::Schema.define(version: 2021_09_22_063111) do
     t.index ["vehicle_id"], name: "index_elements_on_vehicle_id"
   end
 
-  create_table "meterials", force: :cascade do |t|
+  create_table "materials", force: :cascade do |t|
     t.string "name"
-    t.decimal "cost"
+    t.integer "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "plant_id", null: false
+    t.index ["plant_id"], name: "index_materials_on_plant_id"
   end
 
   create_table "models", force: :cascade do |t|
@@ -89,8 +91,19 @@ ActiveRecord::Schema.define(version: 2021_09_22_063111) do
     t.string "licence_number"
     t.date "birthday"
     t.string "user_type"
+    t.integer "first_driver_id"
+    t.integer "second_driver_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vehicleMterials", force: :cascade do |t|
+    t.integer "meterail_id"
+    t.integer "vehicle_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meterail_id"], name: "index_vehicleMterials_on_meterail_id"
+    t.index ["vehicle_id"], name: "index_vehicleMterials_on_vehicle_id"
   end
 
   create_table "vehicles", force: :cascade do |t|
@@ -100,10 +113,14 @@ ActiveRecord::Schema.define(version: 2021_09_22_063111) do
     t.integer "modle"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "elements", "users"
   add_foreign_key "elements", "vehicles"
+  add_foreign_key "materials", "plants"
+  add_foreign_key "vehicles", "users"
 end

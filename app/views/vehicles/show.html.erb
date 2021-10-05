@@ -1,28 +1,48 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @vehicle.name %>
-</p>
-
-<p>
-<%= image_tag(vehicle.avatar_tumbnail) if vehicle.avatar.attached? %>
-</p>
-
-<p>
-  <strong>Vechile number:</strong>
-  <%= @vehicle.vehicle_number %>
-</p>
-
-<p>
-  <strong>Color:</strong>
-  <%= @vehicle.color %>
-</p>
-
-<p>
-  <strong>Modle:</strong>
-  <%= @vehicle.modle %>
-</p>
-
-<%= link_to 'Edit', edit_vehicle_path %> |
-<%= link_to 'Back', vehicles_path %>
+<div class="container p-md-5 ">  
+  <div class="row">
+    <div class="col-4 md-5">
+    <table class="table ">
+      <tbody>
+        <tr>
+          <th scope="row">Driver Name</th>
+          <td><%=User.find(@user_id).first_name%></td>
+        </tr>
+         <tr>
+          <th scope="row">Driver type</th>
+          <td><%=User.find(@user_id).user_type%></td>
+        </tr>
+        <tr>
+          <th scope="row">Name</th>
+          <td><%= @vehicle.name %></td>
+        </tr>
+        <tr>
+          <th scope="row">Vechile number</th>
+          <td><%= @vehicle.vehicle_number %></td>
+        </tr>
+        <tr>
+          <th scope="row">Color</th>
+          <td> <%= @vehicle.color %></td>
+        </tr>
+        <tr>
+          <th scope="row">Modle</th>
+          <td> <%= @vehicle.modle %> </td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to 'Back', vehicles_path , class: 'btn  btn btn-outline-dark '  %>
+    <%= link_to 'Edit', edit_vehicle_path, class: 'fas btn btn-outline-info ' %>  
+     <%= link_to 'Delete', @vehicle, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fas btn btn-outline-danger '  %>
+    </div>
+    <div class="col-8 text-center avatar">
+      <p>
+        <% if @vehicle.avatar.attached? %>
+        <%= image_tag @vehicle.avatar.variant(resize_to_limit: [720, 287])%> 
+        <% else %>
+        <% render= 'images/default.jpg' %>
+        <% end %>
+      </p>
+     
+    </div>
+  </div>
+</div>

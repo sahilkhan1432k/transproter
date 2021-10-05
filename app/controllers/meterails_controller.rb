@@ -1,4 +1,0 @@
-class MeterailsController < ApplicationController
-    
-
-end
