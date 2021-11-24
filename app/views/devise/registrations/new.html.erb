@@ -1,9 +1,7 @@
-<%= render 'layouts/navbar' %></br></br></br></br>
 <div class = "container-sm">
 <h2 class = "text-center p-4"">Sign Up</h2>
-<div class = "row">
-  <div class="col-2">
-  </div>
+<div class = "row justify-content-md-center ">
+  <div class="col-2"> </div>
   <div class="col-8">
     <div class= "container-sm sign-up ">
       <div class=" mt-4"></br></br>
@@ -16,12 +14,16 @@
                 aria-labelledby="tab-login">
               <%= f.text_field :first_name, hautofocus: true, autocomplete: "text", class:'form-label form-control', placeholder: 'First Name'  %>
               <%= f.text_field :last_name, hautofocus: true, autocomplete: "text", class:'form-label form-control' , placeholder: 'Last Name' %>
-               <%= f.select :user_type,  ['First driver', 'Second driver'] , {include_blank: "User type"}, {class:"form-select form-label "}%>
+              <%= f.text_field :address, hautofocus: true, autocomplete: "text", class:'form-label form-control' , placeholder: 'Address' %>
+
+              <%= f.select :user_type,  User::USER_TYPES , {include_blank: "User Type"}, {class:"form-select form-label "}%>
               <%= f.text_field :licence_number, hautofocus: true, autocomplete: "int", class:'form-label form-control' , placeholder: 'Licence Number' %>
               <%= f.date_field :birthday, hautofocus: true, class:'form-label form-control' , placeholder: 'Date of birth' %>
               <%= f.email_field :email, hautofocus: true, autocomplete: "email", class:'form-label form-control', placeholder: 'Email'  %>
               <%= f.password_field :password, autocomplete: "new-password", class:'form-label form-control', placeholder: 'Password'%>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:'form-label form-control', placeholder: 'Password confirmation'%>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:'form-label form-control', placeholder: 'Password Confirmation'%>
+              
+
               <%= f.file_field :avatar,class:'form-label form-control' %>
                 <% if resource.avatar.attached? %>
                 <%= image_tag(resource.avatar) %>
@@ -34,7 +36,7 @@
             </div>
           </div>
         <% end %>
-      </div></br>
+      </div>
     </div>
   </div>
 </div>

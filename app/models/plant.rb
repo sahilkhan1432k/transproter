@@ -4,6 +4,6 @@ class Plant < ApplicationRecord
     has_many :materials
 
   ################################ Validations ########################
-    validates :avatar, presence: true
+    validates :avatar, attached: true, content_type: [:png, :jpg, :jpeg]
     
 end

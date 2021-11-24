@@ -1,0 +1,24 @@
+<div class = "container p-5">
+  <h1 class= "text-center p-md-4"> My Vehicles  </h1>           
+  <p class="text-end"><%= link_to 'Add New Vehicle', new_vehicle_path, class: 'btn btn-secondary' %></p>
+  <div class = "row row-cols-1 row-cols-md-3 g-4">
+    <% @vehicles.each do |vehicle| %>
+      <% if vehicle.user_id == current_user.id%>    
+        <div class="col">
+          <div class="card h-100">
+            <div >
+              <% if vehicle.avatar.attached? %>
+                <%= image_tag vehicle.avatar, class:'card-img-top'%> 
+              <% else %>
+              <% end %>
+            </div>
+            <div class="card-body ">
+              <h5 class="card-title"><%=link_to vehicle.name, vehicle %>  </h5>
+              <h5><%= vehicle.modle %> </h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div><br>
+<div><br /> <br />

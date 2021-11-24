@@ -6,19 +6,22 @@ class User < ApplicationRecord
          
   ################################ Relationships ########################
 
-  has_one_attached :avatar
-  has_one :vehicle
+  has_one_attached :avatar , dependent: :destroy
+  has_many :job_applications , dependent: :destroy
+  has_many :vehicles , dependent: :destroy
+  belongs_to :first_vehicle, class_name:"Vehicle", foreign_key: :first_driver_id, optional: true
+  belongs_to :second_vehicle, class_name:"Vehicle", foreign_key: :second_driver_id, optional: true
   
-  has_one :second_driver, class_name: "User", foreign_key: "first_driver_id"
+  has_one :second_driver, class_name: "User", foreign_key: "user_driver_id"
   belongs_to :first_driver, class_name: "User", optional: true
 
-  belongs_to :first_vehicle, class_name: "Vehicle", foreign_key: "first_driver_id", optional: true
-  belongs_to :second_vehicle, class_name: "Vehicle", foreign_key: "second_driver_id", optional: true
+  has_many :messages , dependent: :destroy
+
     
 
 
   ########################## VOlidation  ##########################
-  validates :avatar, presence: true
+  validates :avatar, attached: true, content_type: [:png, :jpg, :jpeg]
 
 
 

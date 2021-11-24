@@ -1,0 +1,17 @@
+<% if current_user == message.user_id %>
+  <ul class="m-b-0">
+    <li class="clearfix">
+      <div class="message my-message"><%= "#{message.user.email}: #{message.content}" %></div>
+    </li>
+  </ul>
+  
+<% else %>
+  <ul class="m-b-0">
+    <li class="clearfix">
+      <div class="message other-message float-right"><%= "#{message.user.email}: #{message.content}" %></div>
+    </li>
+  </ul>
+  
+<% end %>
+
+ 

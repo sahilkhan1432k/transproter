@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import "packs/bootstrap"
 
@@ -18,6 +19,14 @@ ActiveStorage.start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("bootstrap")
 require("jquery")
 
+
 // @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+//= require jquery
+//= require jquery_ujs
+//= require bootstraps
+// application.js
+require("trix")
+require("@rails/actiontext")

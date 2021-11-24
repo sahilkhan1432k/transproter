@@ -1,0 +1,253 @@
+<br><br>
+			<h3 class="text-center"> Application </h3>
+<div class="m-4">
+	<ul class="nav nav-tabs" id="myTab">
+		<li class="nav-item">
+			<a href="#home" class="nav-link active" data-bs-toggle="tab">Applications for First Driver</a>
+		</li>
+		<li class="nav-item">
+			<a href="#profile" class="nav-link" data-bs-toggle="tab">Applications for Second Driver</a>
+		</li>
+	</ul>
+	<div class="tab-content bg-white">
+		<div class="tab-pane fade show active" id="home">
+			<% if  @vehicle.job_applications.present?  %>
+				<div class="container px-5 py-5">
+					<div class="row">
+						<div class="col mx-1 border-end border-start ">
+							<p class="fs-6 fw-bold text-center"> New </p>
+							<% @vehicle.job_applications.each do |job_application| %>
+								<% if User.find(job_application.user_id).user_type == User::USER_TYPE_FIRST_DRIVER %>
+									<% if job_application.aasm_state == "new" %>
+										<div class="card border border-2" style="width: 10rem;">
+											<% if User.find(job_application.user_id).avatar.attached? %>
+												<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+											<% end %>
+											<div class="card-body text-center">
+												<h5 class="card-title text-center"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+												<% if current_user.id == job_application.user_id %>
+												<% else %>
+													<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Call for Interview">
+														<%= link_to "Interview", interviewed_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-light' %>
+													</button>`
+													<br>
+													 <p class="text-center"><small>OR<br></small>
+													<%= link_to " Reject", rejected_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-danger text-center' %>
+												<% end %>
+											</div>
+										</div><br>
+									<% end %>
+								<% end %>
+							<% end %>
+						</div>
+						<div class="col mx-1 border-end  ">
+							<p class="fs-6 fw-bold text-center"> Interviewed </p>
+							<% @vehicle.job_applications.each do |job_application| %>
+								<% if User.find(job_application.user_id).user_type == User::USER_TYPE_FIRST_DRIVER %>
+									<% if job_application.aasm_state == "interviewed" %>
+										<div class="card border border-2" style="width: 10rem;">
+											<% if User.find(job_application.user_id).avatar.attached? %>
+												<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+											<% end %>
+											<div class="card-body text-center">
+												<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+												<% if current_user.id == job_application.user_id %>
+												<% else %>
+												<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to shortlist">
+													<%= link_to "Shortlist", shortlisted_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-light' %>
+												</button>
+													<br>
+													<p class="fw-lighter text-center"> OR <br>
+													<%= link_to " Reject", rejected_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-danger' %>
+												<% end %>
+											</div>
+										</div><br>
+									<% end %>
+								<% end %>
+							<% end %>
+							<br>
+						</div>
+						<div class="col mx-1 border-end">
+							<p class="fs-6 fw-bold text-center"> Shortlisted </p>
+							<% @vehicle.job_applications.each do |job_application| %>
+								<% if User.find(job_application.user_id).user_type == User::USER_TYPE_FIRST_DRIVER %>
+									<% if job_application.aasm_state == "shortlisted" %>
+										<div class="card border border-2" style="width: 10rem;">
+											<% if User.find(job_application.user_id).avatar.attached? %>
+												<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+											<% end %>
+											<div class="card-body text-center">
+												<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+												<% if current_user.id == job_application.user_id %>
+												<% else %>
+													<button type="button" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Hire">
+														<%= link_to "Hire", hired_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-light' %>
+													</button>
+													<br>
+													 <p class="text-center">OR<br>
+													<%= link_to " Reject", rejected_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-danger text-center' %>
+												<% end %>
+											</div>
+										</div><br>
+									<% end %>
+								<% end %>
+							<% end %>
+						</div>
+						<div class="col mx-1 border-end">
+							<p class="fs-6 fw-bold text-center"> Hired  </p>
+							<% @vehicle.job_applications.each do |job_application| %>
+								<% if User.find(job_application.user_id).user_type == User::USER_TYPE_FIRST_DRIVER %>
+									<% if job_application.aasm_state == "hired" %>
+										<div class="card border border-2 " style="width: 10rem;">
+											<% if User.find(job_application.user_id).avatar.attached? %>
+												<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+											<% end %>
+											<div class="card-body text-center">
+												<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+											</div>
+										</div><br>
+									<% end %>
+								<% end %>
+							<% end %>
+						</div>
+						<div class="col mx-1 border-end">
+							<p class="fs-6 fw-bold text-center"> Rejected  </p>
+							<% @vehicle.job_applications.each do |job_application| %>
+								<% if User.find(job_application.user_id).user_type == User::USER_TYPE_FIRST_DRIVER %>
+									<% if job_application.aasm_state == "rejected" %>
+										<div class="card border border-2" style="width: 10rem;">
+											<% if User.find(job_application.user_id).avatar.attached? %>
+												<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+											<% end %>
+											<div class="card-body text-center">
+												<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+											</div>
+										</div><br>
+									<% end %>
+								<% end %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			<br>
+		</div>
+		<div class="tab-pane fade" id="profile">
+			<% if  @vehicle.job_applications.present?  %>
+				<div class="container px-5 py-5">
+					<div class="container">
+						<div class="row">
+							<div class="col mx-1 border-end">
+									<p class="fs-6 fw-bold text-center"> New  </p>
+								<% @vehicle.job_applications.each do |job_application| %>
+									<% if User.find(job_application.user_id).user_type == User::USER_TYPE_SECOND_DRIVER %>
+										<% if job_application.aasm_state == "new" %>
+											<div class="card border border-2 " style="width: 10rem;">
+												<% if User.find(job_application.user_id).avatar.attached? %>
+													<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+												<% end %>
+												<div class="card-body text-center">
+													<h5 class="card-title"><<%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+													<% if current_user.id == job_application.user_id %>
+													<% else %>
+														<%= link_to "Interview", interviewed_vehicle_job_application_path(id: job_application.id ), method: :put, class:'btn btn-secondary btn-sm' %><br>
+														<p class="text-center fs-6"> OR</p>
+														<%= link_to " Reject", rejected_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-danger' %>
+													<% end %>
+												</div>
+											</div><br>
+										<% end %>	
+									<% end %>
+								<% end %>
+								</div>
+								<div class="col mx-1 border-end">
+								<p class="fs-6 fw-bold text-center"> Interviewed  </p>
+								<% @vehicle.job_applications.each do |job_application| %>
+									<% if User.find(job_application.user_id).user_type == User::USER_TYPE_SECOND_DRIVER %>
+										<% if job_application.aasm_state == "interviewed" %>
+											<div class="card border border-2 " style="width: 10rem;">
+												<% if User.find(job_application.user_id).avatar.attached? %>
+													<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+												<% end %>
+												<div class="card-body text-center">
+													<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+													<% if current_user.id == job_application.user_id %>
+													<% else %>
+														<%= link_to "Shortlist", shortlisted_vehicle_job_application_path(id: job_application.id ), method: :put, class:'btn btn-secondary btn-sm' %><br>
+														<p class="fw-lighter text-center"> OR</p>
+														<%= link_to " Reject", rejected_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-danger'%>
+													<% end %>
+												</div>
+											</div><br>
+										<% end %>
+									<% end %>
+								<% end %>
+								</div>
+								<div class="col mx-1 border-end">
+									<p class="fs-6 fw-bold text-center"> Shortlisted  </p>
+									<% @vehicle.job_applications.each do |job_application| %>
+										<% if User.find(job_application.user_id).user_type == User::USER_TYPE_SECOND_DRIVER %>
+											<% if job_application.aasm_state == "shortlisted" %>
+												<div class="card border border-2 " style="width: 10rem;">
+													<% if User.find(job_application.user_id).avatar.attached? %>
+														<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+													<% end %>
+													<div class="card-body text-center">
+														<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+														<% if current_user.id == job_application.user_id %>
+														<% else %>
+															<button type="button" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Hire">
+																<%= link_to "Hire", hired_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-light' %>
+															</button>
+															<br>
+													 <p class="text-center fs-6">OR<br>
+														<%= link_to " Reject", rejected_vehicle_job_application_path(id: job_application.id ), method: :put, class:'text-danger text-center' %>
+															
+														<% end %>
+													</div>
+												</div><br>
+											<% end %>
+										<% end %>
+									<% end %>
+								</div>
+								<div class="col mx-1 border-end">
+									<p class="fs-6 fw-bold text-center"> Hired </p>
+									<% @vehicle.job_applications.each do |job_application| %>
+										<% if User.find(job_application.user_id).user_type == User::USER_TYPE_SECOND_DRIVER %>
+											<% if job_application.aasm_state == "hired" %>
+												<div class="card border border-2 " style="width: 10rem;">
+													<% if User.find(job_application.user_id).avatar.attached? %>
+														<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+													<% end %>
+													<div class="card-body text-center">
+														<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+													</div>
+												</div><br>
+											<% end %>
+										<% end %>
+									<% end %>
+								</div>
+								<div class="col mx-1 border-end">
+									<p class="fs-6 fw-bold text-center"> Rejected </p>
+									<% @vehicle.job_applications.each do |job_application| %>
+										<% if User.find(job_application.user_id).user_type == User::USER_TYPE_SECOND_DRIVER %>
+											<% if job_application.aasm_state == "rejected" %>
+												<div class="card border border-2 " style="width: 10rem;">
+													<% if User.find(job_application.user_id).avatar.attached? %>
+														<%= image_tag User.find(job_application.user_id).avatar, class:'card-img-top'%>
+													<% end %>
+													<div class="card-body text-center">
+														<h5 class="card-title"><%= link_to User.find(job_application.user_id).first_name+User.find(job_application.user_id).last_name, vehicle_job_application_path(id: job_application.id) %></h5>
+													</div>
+												</div><br>
+											<% end %>
+										<% end %>
+									<% end %>
+								</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

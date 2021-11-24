@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
-<div class = "container p-5"> 
+<div class = "container p-5">
   <h1 class= "text-center p-md-4">Plants </h1>
   <p class="text-end"><%= link_to 'New Plant', new_plant_path, class: 'btn btn-secondary'  %></p>
   <div class = "row row-cols-1 row-cols-md-3 g-4">
     <% @plants.each do |plant| %>
-    <div class="col-4">
-      <div class="card h-100" style="width: 16rem;">
+    <div class="col">
+      <div class="card h-100">
         <div >
           <% if plant.avatar.attached? %>
-          <%= image_tag plant.avatar.variant(resize_to_limit: [250, 183]), class:'card-img-top'%> 
+          <%= image_tag plant.avatar, class:'card-img-top image_style'%>
           <% else %>
           <% end %>
         </div>
@@ -19,6 +18,5 @@
       </div>
     </div>
     <% end %>
-  </div>
-  <br />
+  </div><br />
 </div>

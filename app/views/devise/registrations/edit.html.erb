@@ -1,4 +1,4 @@
-<%= render 'layouts/navbar' %></br></br></br></br>
+
 <h2 class = "text-center p-4">Edit your profile.</h2>
 <div class = "row">
   <div class="col-2">
@@ -8,17 +8,18 @@
       <div class="text-center mt-4"></br></br>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-          <div class="row justify-content-md-center">
+          <div class="row justify-content-md-center" style="margin-bottom: 100px;">
             <div class="field form-outline col-8 "
                   id="pills-login"
                   role="tabpanel"
                   aria-labelledby="tab-login">
                   <% if current_user.avatar.attached? %>
-                    <%= image_tag current_user.avatar.variant(resize_to_limit: [30, 60]), class: 'rounded-circle' %> 
+                    <%= image_tag current_user.avatar, class: 'rounded-circle z-depth-2' %> 
                   <%else%>
-                  <% end %>
+                  <% end %><br /> <br />
                 <%= f.text_field :first_name, hautofocus: true, autocomplete: "text", class:'form-label form-control', placeholder: 'First name'  %>
                 <%= f.text_field :last_name, hautofocus: true, autocomplete: "text", class:'form-label form-control' , placeholder: 'Last name' %>
+                <%= f.text_field :address, hautofocus: true, autocomplete: "text", class:'form-label form-control' , placeholder: 'Address' %>
                 <%= f.text_field :licence_number, hautofocus: true, autocomplete: "int", class:'form-label form-control', placeholder: 'Licence number' %>
                 <%= f.date_field :birthday, hautofocus: true, class:'form-label form-control' , placeholder: 'Birthday' %>
                 <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-label form-control', placeholder: 'Email' %>
@@ -39,9 +40,8 @@
                   <%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class:'text-danger' %>
                 </div>
               </div>
-            </div>
         <% end %>
       </div>
     </div>
   </div>
-</div></br></br></br></br>
+</div></br></br></br></br></br></br></br></br></br></br></br>

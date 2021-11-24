@@ -1,6 +1,8 @@
 class MaterialsController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_material, only: %i[ show edit update destroy ]
-	
+	before_action :set_plant, only: [:show, :edit, :new, :create]
+
 	def index
 		@materials = Material.all
 	end
@@ -11,18 +13,13 @@ class MaterialsController < ApplicationController
 
 	def new
 		@material = Material.new
-
-		@plant = Plant.find(params[:plant_id])
 	end
 	
 
 	def edit
-		@plant = Plant.find(params[:plant_id])
 	end
 
 	def create
-		binding.pry
-		@plant = Plant.find(params[:plant_id])
 		@material = @plant.materials.create(material_params)
 		
 
@@ -57,11 +54,17 @@ class MaterialsController < ApplicationController
 		end
 	end
 	
-	private
-		def set_material
-		@material = Material.find(params[:id])
-		end
-		def material_params
-		params.require(:material).permit(:name, :cost, :avatar, :plant_id)
-		end
+
+	def set_material
+	@material = Material.find(params[:id])
 	end
+
+	def set_plant
+		@plant = Plant.find(params[:plant_id])
+	end
+
+	def material_params
+	params.require(:material).permit(:name, :cost, :avatar, :plant_id)
+	end
+
+end	

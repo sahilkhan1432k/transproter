@@ -1,0 +1,34 @@
+<%= form_with(model: jobapplication) do |form| %>
+  <% if jobapplication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(jobapplication.errors.count, "error") %> prohibited this jobapplication from being saved:</h2>
+
+      <ul>
+        <% jobapplication.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <%= form.file_field :cv, class:'form-label form-control', placeholder: 'cv'%>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+                
+
+<% end %>

@@ -1,28 +1,29 @@
-<p id="notice"><%= notice %></p>
 <div class="container p-md-5 ">  
-  <div class="row">
-    <div class="col-4 md-5">
-      <table class="table ">
-        <tbody>
-          <tr>
-            <th scope="row">Name</th>
-            <td><%= @material.name %></td>
-          </tr>
-          <tr>
-            <th scope="row">Cost</th>
-            <td><%= @material.cost %></td>
-          </tr>
-        </tbody>
-      </table>
-      <%= link_to 'Edit', edit_plant_material_path(@material), class: 'fas btn btn-outline-info ' %>
-    </div>
-    <div class="col-8 text-center avatar">
-        <p>
-          <%if @material.avatar.attached? %>
-          <%= image_tag @material.avatar.variant(resize_to_limit: [720, 287])%> 
-          <% else %>
-          <% end %>
-        </p>
+  <div class="card mb-3 ">
+    <div class="row g-0">
+      <div class="col-md-8">
+        <div class="card-body">
+          <table class="table ">
+            <tbody>
+              <tr>
+                <th scope="row">Name</th>
+                <td><%= @material.name %></td>
+              </tr>
+              <tr>
+                <th scope="row">Cost</th>
+                <td><%= @material.cost %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to 'Back', @plant, class: 'fas btn btn-outline-dark ' %>
+          <%= link_to 'Edit', edit_plant_material_path, class: 'fas btn btn-outline-info ' %>
+        </div>
+      </div>
+      <div class="col">
+        <%if @material.avatar.attached? %>
+          <%= image_tag @material.avatar, class:'card-img-top'%> 
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

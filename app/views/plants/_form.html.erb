@@ -3,7 +3,7 @@
   </div>
   <div class="col-8">
     <div class= "container vehicle">
-      <div class="text-center mt-4"></br></br>
+      <div class="text-center mt-4"><br/><br/>
         <%= form_with(model: plant) do |form| %>
           <% if plant.errors.any? %>
             <div class="row justify-content-md-center">
@@ -21,7 +21,7 @@
           <div class="row justify-content-md-center">
             <div class="col-8">
               <%= form.text_field :name, class:'form-label form-control', placeholder: 'Name' %>
-              <%= form.text_area :address, class:'form-label form-control', placeholder: 'Addresst' %>
+              <%= form.text_area :address, class:'form-label form-control', placeholder: 'Address' %>
               <%= form.file_field :avatar,class:'form-label form-control' %>
               <div class="actions text-start">
                 <%= link_to 'Back', @plant %>
@@ -33,4 +33,4 @@
       </div>
     </div>
   </div>
-</div>
+</div><br />

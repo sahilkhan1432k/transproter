@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_055515) do
+ActiveRecord::Schema.define(version: 2021_11_16_071529) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,18 +48,40 @@ ActiveRecord::Schema.define(version: 2021_10_04_055515) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
+    t.index ["sender_id"], name: "index_conversations_on_sender_id"
+  end
+
   create_table "elements", force: :cascade do |t|
-    t.integer "vehicle_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "vehicle_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_elements_on_user_id"
     t.index ["vehicle_id"], name: "index_elements_on_vehicle_id"
+  end
+
+  create_table "job_applications", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "vehicle_id", null: false
+    t.string "aasm_state"
+    t.index ["user_id"], name: "index_job_applications_on_user_id"
+    t.index ["vehicle_id"], name: "index_job_applications_on_vehicle_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -54,8 +89,18 @@ ActiveRecord::Schema.define(version: 2021_10_04_055515) do
     t.integer "cost"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "plant_id", null: false
+    t.bigint "plant_id", null: false
     t.index ["plant_id"], name: "index_materials_on_plant_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "models", force: :cascade do |t|
@@ -73,6 +118,12 @@ ActiveRecord::Schema.define(version: 2021_10_04_055515) do
   create_table "plants", force: :cascade do |t|
     t.string "name"
     t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -98,8 +149,8 @@ ActiveRecord::Schema.define(version: 2021_10_04_055515) do
   end
 
   create_table "vehicleMterials", force: :cascade do |t|
-    t.integer "meterail_id"
-    t.integer "vehicle_id"
+    t.bigint "meterail_id"
+    t.bigint "vehicle_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["meterail_id"], name: "index_vehicleMterials_on_meterail_id"
@@ -113,7 +164,7 @@ ActiveRecord::Schema.define(version: 2021_10_04_055515) do
     t.integer "modle"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
@@ -121,6 +172,10 @@ ActiveRecord::Schema.define(version: 2021_10_04_055515) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "elements", "users"
   add_foreign_key "elements", "vehicles"
+  add_foreign_key "job_applications", "users"
+  add_foreign_key "job_applications", "vehicles"
   add_foreign_key "materials", "plants"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "vehicles", "users"
 end

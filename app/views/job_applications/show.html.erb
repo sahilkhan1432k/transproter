@@ -1,0 +1,47 @@
+<div class="contailner">
+  <div class="row">
+    <div class="col-7" >
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label "><strong> Cover Letter</strong></label><br>
+        <%= @job_application.description %>
+        <%= @job_application.content %>
+      </div>
+    </div>
+    <div class="col">
+      <% if current_user.id == @user.id %>
+      <%else%>
+        <% if @job_application.aasm_state == 'hired'  %>
+          <%= link_to 'approve', approve_vehicle_job_applications_path(job_application_id: @job_application.id), :method=> :patch, class: 'fas btn btn-outline-success ' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar, class:'card-img-top'%>
+      <% end %>
+      <p> 
+        <strong> User Name: </strong>
+        <%= @user.first_name+@user.last_name %>
+      </p>
+      <p>
+        <strong>Email: </strong>
+        <%= @user.email%> 
+      </p>
+      <p> 
+        <strong>Licence Number: </strong> 
+        <%= @user.licence_number %>
+      </p>
+      <p>
+        <strong>Birthday: </strong>
+        <%= @user.birthday %>
+      </p>
+      
+      <% if @user.address.present?%>
+        <p> 
+          <strong> Address: </strong>
+          <%= @user.address %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

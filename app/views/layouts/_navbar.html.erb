@@ -1,48 +1,48 @@
-<nav id="navbar" class="navbar fixed-top navbar-expand-lg  ">
-  <div class= "mx-auto"> </div>
-  <ul>
-    <li><a class="nav-link active" href="/">Home</a></li>
-    
-
-    <% if user_signed_in? %>
-      <a class="nav-link" href="#services">
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete  %>
-      </a>
-      <li><a class="nav-link" href="#about">About</a></li>
-    
-    <a class="nav-link">
-    <%= link_to 'Profile', edit_user_registration_path  %>
-    
-    </a>
-    <a class="dropdown-toggle d-flex align-items-center hidden-arrow">
-      <%if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar.variant(resize_to_limit: [23, 23]), class: 'rounded-circle' %> 
-      <% else %>
-      <% end %>
-    </a>
-
-    <a class="nav-link">
-     <%= link_to 'Vehicle', vehicles_path  %>
-    </a>
-    <a class="nav-link">
-     <%= link_to 'Plant', plants_path  %>
-    </a>
-      
-    <% else %>
-    <a class="nav-link">
-    <%= link_to 'Sign in', new_user_session_path  %>
-    </a>
-    <a class="nav-link" href="#services">
-    <%= link_to 'Sign up', new_user_registration_path  %>
-    </a>
-    <a class="nav-link" href="#services">
-    
-    <% end %>
-    
-    <a class="nav-link scrollto p-3" href="#contact">Contact</a>
-    <!-- Avatar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button class="navbar-toggler text-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon toggler"><i class="bi bi-border-width"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll justify-content-center" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+         <a href="/" class="nav-link">
+            <i class=" active bi bi-house fw-bold"  > Home</i>
+          </a>
+        </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Vehicles', vehicles_path ,class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Plants', plants_path ,class: 'nav-link'  %>
+            </li>
+            
+          <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sign in', new_user_session_path ,class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign up', new_user_registration_path ,class: 'nav-link' %>
+          </li>
+          <% end %>
+      </ul>
     </div>
-  </ul>
-  <i class="bi bi-list mobile-nav-toggle"></i>
-</nav><!-- .navbar -->
-<!------------- end  -------------->
+    <div class="d-flex align-items-center">
+      <% if user_signed_in? %>
+        
+        <div   id="navbarScrollingDropdown"  data-bs-toggle="dropdown" aria-expanded="false">
+          <%if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar, class: 'rounded-circle shard_link nav-link dropdown-toggle d-flex align-items-center hidden-arrow btn  '  %> 
+        <% else %>
+        <% end %>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-end"ria-labelledby="navbarDropdownMenuLink">
+          <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete ,class: 'dropdown-item'  %></li>
+          <li><%= link_to 'Profile', edit_user_registration_path, class: 'dropdown-item' %></li>
+          <li><%= link_to 'My Vehicles', my_vehicles_vehicles_path, class: 'dropdown-item' %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>

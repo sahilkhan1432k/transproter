@@ -20,13 +20,15 @@
           <div class="row justify-content-md-center">
             <div class="col-8">
               <%= form.text_field :name, class:'form-label form-control', placeholder: 'Name'%>
-              <%= form.text_field :color, class:'form-label form-control', placeholder: 'color of vehicle' %>
+              <%= form.text_field :color, class:'form-label form-control', placeholder: 'Color of Vehicle' %>
               <%= form.text_field :vehicle_number, class:'form-label form-control', placeholder: 'Vechile Number' %>
               <%= form.number_field :modle, class:'form-label form-control', placeholder: 'Vechile Modle'%>
-              <%= form.file_field :avatar,class:'form-label form-control' %>
-              <div class="actions text-start ">
+              <%= form.file_field :avatar, class:'form-label form-control' %>
+              <%= form.select :first_driver_id , @first_driver_ids, {include_blank: "First Drivers Name "}, {class:"form-select form-label"}%>
+              <%= form.select :second_driver_id , @second_driver_ids, {include_blank: "Second Drivers Name"}, {class:"form-select form-label"}%>
+              <div class="actions text-start">
               <%= link_to 'Back', @vehicle %>
-                <%= form.submit class: 'btn  btn btn-outline-primary text-end'  %>
+                <%= form.submit class: 'btn  btn btn-outline-primary text-end' %><br /><br />
               </div>
             </div>
           <% end %>
