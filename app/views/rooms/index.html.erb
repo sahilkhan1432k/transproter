@@ -24,13 +24,14 @@
 							<% if @room.present? %>
 								<div id='messages' data-room_id="<%= @room.id %>">
 										<% @messages.each do |message| %>
+											<div id="message-id" data-message-id="<%= message.user.id %>"></div>
 											<% if message.user.id == current_user.id %>
 												<li class="clearfix">
-													<div class="message my-message"><%= message.content%></div>    
+													<div class="message my-message"><%= message.content%>:<%= message.user.id %></div>
 												</li>
 											<% else %>
 												<li class="clearfix">
-													<div class="message other-message float-right"><%= message.content%></div>
+													<div class="message other-message float-right"><%= message.content%>:<%= message.user.id %></div>
 												</li>
 											<% end %>
 										<% end %>
@@ -41,7 +42,9 @@
 					<div class="chat-message clearfix">
 						<% if @room.present? %>
 							<div class="input-group mb-0">
-								<%= text_field_tag :content, nil, data: { behavior: 'room_speaker', current_user_id: "#{current_user.id}" }, class:'form-control' , placeholder:'Enter text here...' %>
+								<%= hidden_field :user_id, value: current_user.id %>
+								<%= text_field_tag :content, nil, data: { behavior: 'room_speaker'}, class:'form-control' , placeholder:'Enter text here...' %>
+
 							</div>
 						<% end %>
 					</div>

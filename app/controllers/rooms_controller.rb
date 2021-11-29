@@ -1,19 +1,17 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user! 
+  before_action :authenticate_user!
 
   def index
     @rooms = Room.all.order(:id)
-    
+
   end
 
   def show
     @room = Room.find(params[:id])
     @messages = @room.messages
-    @sender_messages = @room.messages.where(user_id: current_user.id)
-    @reciver_messages = @room.messages.where.not(user_id: current_user.id)
     @rooms = Room.all
     render 'index'
-    
+
   end
 
   def new
