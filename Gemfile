@@ -18,6 +18,8 @@ gem 'jquery-rails'
 gem 'aasm'
 gem 'redis', '~> 4.5', '>= 4.5.1'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+gem 'autoprefixer-rails', '~> 10.3', '>= 10.3.3.0'
+gem 'bs5', '~> 0.0.31'
 
 
 gem 'image_processing', '~> 1.2'

@@ -13,22 +13,22 @@ body {
     font-family: "Open Sans", sans-serif;
     color: #444444;
   }
-  
+
   a {
     color: #061922;
     text-decoration: none;
   }
-  
+
   a:hover {
     color: #73c5eb;
     text-decoration: none;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: "Jost", sans-serif;
   }
-  
-  
+
+
   /*--------------------------------------------------------------
   # Back to top button
   --------------------------------------------------------------*/
@@ -45,28 +45,28 @@ body {
     border-radius: 50px;
     transition: all 0.4s;
   }
-  
+
   .back-to-top i {
     font-size: 24px;
     color: #fff;
     line-height: 0;
   }
-  
+
   .back-to-top:hover {
     background: #6bc1e9;
     color: #fff;
   }
-  
+
   .back-to-top.active {
     visibility: visible;
     opacity: 1;
   }
-  
+
   /*--------------------------------------------------------------
   # Navigation Menu
   --------------------------------------------------------------*/
   /**
-  * Desktop Navigation 
+  * Desktop Navigation
   */
   .navbar {
     background-color: #563d7c;
@@ -101,16 +101,16 @@ body {
     padding: 60px 0;
     overflow: hidden;
   }
-  
+
   .section-bg {
     background-color: #f3f5fa;
   }
-  
+
   .section-title {
     text-align: center;
     padding-bottom: 30px;
   }
-  
+
   .section-title h2 {
     font-size: 32px;
     font-weight: bold;
@@ -120,7 +120,7 @@ body {
     position: relative;
     color: #37517e;
   }
-  
+
   .section-title h2::before {
     content: '';
     position: absolute;
@@ -131,7 +131,7 @@ body {
     bottom: 1px;
     left: calc(50% - 60px);
   }
-  
+
   .section-title h2::after {
     content: '';
     position: absolute;
@@ -142,11 +142,11 @@ body {
     bottom: 0;
     left: calc(50% - 20px);
   }
-  
+
   .section-title p {
     margin-bottom: 0;
   }
-  
+
   /*--------------------------------------------------------------
   # Cliens
   --------------------------------------------------------------*/
@@ -154,7 +154,7 @@ body {
     padding: 12px 0;
     text-align: center;
   }
-  
+
   .cliens img {
     max-width: 45%;
     transition: all 0.4s ease-in-out;
@@ -162,18 +162,18 @@ body {
     padding: 15px 0;
     filter: grayscale(100);
   }
-  
+
   .cliens img:hover {
     filter: none;
     transform: scale(1.1);
   }
-  
+
   @media (max-width: 768px) {
     .cliens img {
       max-width: 40%;
     }
   }
-  
+
   /*--------------------------------------------------------------
   # About Us
   --------------------------------------------------------------*/
@@ -181,21 +181,21 @@ body {
     font-weight: 600;
     font-size: 26px;
   }
-  
+
   .about .content ul {
     list-style: none;
     padding: 0;
   }
-  
+
   .about .content ul li {
     padding-left: 28px;
     position: relative;
   }
-  
+
   .about .content ul li + li {
     margin-top: 10px;
   }
-  
+
   .about .content ul i {
     position: absolute;
     left: 0;
@@ -204,11 +204,11 @@ body {
     color: #47b2e4;
     line-height: 1;
   }
-  
+
   .about .content p:last-child {
     margin-bottom: 0;
   }
-  
+
   .about .content .btn-learn-more {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
@@ -225,13 +225,13 @@ body {
     margin-top: 6px;
     border: 2px solid #47b2e4;
   }
-  
+
   .about .content .btn-learn-more:hover {
     background: #47b2e4;
     color: #fff;
     text-decoration: none;
   }
-  
+
   /*--------------------------------------------------------------
   # Team
   --------------------------------------------------------------*/
@@ -243,32 +243,32 @@ body {
     background: #fff;
     transition: 0.5s;
   }
-  
+
   .team .member .pic {
     overflow: hidden;
     width: 180px;
     border-radius: 50%;
   }
-  
+
   .team .member .pic img {
     transition: ease-in-out 0.3s;
   }
-  
+
   .team .member:hover {
     transform: translateY(-10px);
   }
-  
+
   .team .member .member-info {
     padding-left: 30px;
   }
-  
+
   .team .member h4 {
     font-weight: 700;
     margin-bottom: 5px;
     font-size: 20px;
     color: #37517e;
   }
-  
+
   .team .member span {
     display: block;
     font-size: 15px;
@@ -276,7 +276,7 @@ body {
     position: relative;
     font-weight: 500;
   }
-  
+
   .team .member span::after {
     content: '';
     position: absolute;
@@ -287,19 +287,19 @@ body {
     bottom: 0;
     left: 0;
   }
-  
+
   .team .member p {
     margin: 10px 0 0 0;
     font-size: 14px;
   }
-  
+
   .team .member .social {
     margin-top: 12px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
-  
+
   .team .member .social a {
     transition: ease-in-out 0.3s;
     display: flex;
@@ -310,30 +310,30 @@ body {
     height: 32px;
     background: #eff2f8;
   }
-  
+
   .team .member .social a i {
     color: #37517e;
     font-size: 16px;
     margin: 0 2px;
   }
-  
+
   .team .member .social a:hover {
     background: #47b2e4;
   }
-  
+
   .team .member .social a:hover i {
     color: #fff;
   }
-  
+
   .team .member .social a + a {
     margin-left: 8px;
   }
-  
-  
+
+
   /*..........................login page.......................*/
   .login-page{
     background: #fff;
-  
+
   }
   /*..........................sign Up page.......................*/
   .sign-up{
@@ -345,9 +345,9 @@ body {
   margin-bottom: 15px;
 }
 .avatar img {
-  
+
   height: 250px;
-  width: 500px; 
+  width: 500px;
   margin: 0 auto;
   padding: 0;
 }
@@ -375,7 +375,7 @@ body {
 
 
 body {
-  box-sizing: border-box; 
+  box-sizing: border-box;
     background:#222;
 }
 
@@ -407,7 +407,7 @@ body {
 
 .section-tours {
   background-color: #f7f7f7; }
-  
+
 .card-style{
   perspective: 150rem;
   -moz-perspective: 150rem;
@@ -513,7 +513,6 @@ body{
   border-radius: .55rem;
   position: relative;
   width: 100%;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
 }
 .chat-app .people-list {
   width: 280px;
