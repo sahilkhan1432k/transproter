@@ -1,18 +1,25 @@
 class MessageBroadcastJob < ApplicationJob
   queue_as :default
-  
+
   def perform(message)
-    
-    ActionCable.server.broadcast("room_channel_#{message.room_id}", { message: render_message(message) })
-    
+    mine =  ApplicationController.renderer.render partial: 'messages/mine', locals: { message: message}
+
+    other = ApplicationController.renderer.render partial: 'messages/other', locals: { message: message}
+
+    ActionCable.server.broadcast("room_channel_#{message.room_id}", { message: message, mine: mine, other: other })
+
+
+    # ActionCable.server.broadcast("room_channel_#{message.room_id}", { message: render_message(message), mine: mine, other: other })
+
   end
 
-  private
+  # private
+  #
+  #   def render_message(message)
+  #
+  #     mine =  ApplicationController.renderer.render partial: 'messages/mine', locals: { message: message}
+  #     other = ApplicationController.renderer.render partial: 'messages/other', locals: { message: message}
+  #
+  #   end
 
-    def render_message(message)
-
-      ApplicationController.renderer.render partial: 'messages/message', locals: { message: message,  }
-
-    end
- 
 end
