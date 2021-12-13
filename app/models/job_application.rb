@@ -1,9 +1,11 @@
 class JobApplication < ApplicationRecord
+################################ Relationships ########################
+
   belongs_to :user
   belongs_to :vehicle
   has_one_attached :cv
   has_rich_text :content
-    
+
   include AASM
   aasm timestamps: true do
     state :new, initial: true

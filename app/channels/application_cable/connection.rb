@@ -14,7 +14,6 @@ module ApplicationCable
 
 
       def find_verified_user
-
         session_key = cookies.encrypted[Rails.application.config.session_options[:key]]
 
         verified_user = User.find_by(id: env['warden'].user.id)
