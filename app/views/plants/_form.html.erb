@@ -1,12 +1,7 @@
-<div class = "row">
-  <div class="col-2">
-  </div>
-  <div class="col-8">
-    <div class= "container vehicle">
-      <div class="text-center mt-4"><br/><br/>
-        <%= form_with(model: plant) do |form| %>
-          <% if plant.errors.any? %>
-            <div class="row justify-content-md-center">
+<div class="container-sm p-md-5 plant_form ">
+      <div class= "container-sm">
+          <%= form_with(model: plant) do |form| %>
+            <% if plant.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(plant.errors.count, "error") %> prohibited this plant from being saved:</h2>
 
@@ -16,21 +11,19 @@
                   <% end %>
                 </ul>
               </div>
-            </div>
-          <% end %>
-          <div class="row justify-content-md-center">
-            <div class="col-8">
-              <%= form.text_field :name, class:'form-label form-control', placeholder: 'Name' %>
-              <%= form.text_area :address, class:'form-label form-control', placeholder: 'Address' %>
-              <%= form.file_field :avatar,class:'form-label form-control' %>
-              <div class="actions text-start">
-                <%= link_to 'Back', @plant %>
-                <%= form.submit class: 'btn  btn btn-outline-primary text-end' %>
-              </div>
-             </div>
-          <% end %>
-        </div>
+            <% end %>
+            <form>
+              <div>
+                <%= form.text_field :name, class:'form-label form-control', placeholder: 'Name' %>
+                <%= form.text_area :address, class:'form-label form-control', placeholder: 'Address' %>
+                <%= form.file_field :avatar,class:'form-label form-control' %>
+                <div class="actions text-start">
+                  <%= link_to 'Back', @plant %>
+                  <%= form.submit class: 'btn  btn btn-outline-primary text-end' %>
+                </div>
+               </div>
+            </form>
+
+            <% end %>
       </div>
-    </div>
-  </div>
-</div><br />
+</div>

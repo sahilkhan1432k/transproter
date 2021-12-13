@@ -1,31 +1,30 @@
-<div class="container-md p-md-5 ">
+<div class="container-sm p-md-5 ">
   <div class="card mb-3 ">
-    <div class="row g-0">
-      <div class="col-md-8">
-        <div class="card-body">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th scope="row">Name:</th>
-                <td><%= @plant.name %></td>
-              </tr>
-
-              <tr>
-                <th scope="row">Address</th>
-                <td><%= @plant.address %></td>
-              </tr>
-            </tbody>
-          </table>
-          <%= link_to 'Back', plants_path, class: 'btn  btn btn-outline-dark ' %>
-          <%= link_to 'Edit', edit_plant_path(@plant), class: 'fas btn btn-outline-info '  %>
-          <%= link_to 'Delete', @plant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fas btn btn-outline-danger '  %>
+    <div class="row">
+        <div class="col-6">
+          <div class="card-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Name:</th>
+                  <td><%= @plant.name %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Address</th>
+                  <td><%= @plant.address %></td>
+                </tr>
+              </tbody>
+            </table>
+            <%= link_to 'Back', plants_path, class: 'btn  btn btn-outline-dark ' %>
+            <%= link_to 'Edit', edit_plant_path(@plant), class: 'fas btn btn-outline-info ' %>
+            <%= link_to 'Delete', @plant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fas btn btn-outline-danger ' %>
+          </div>
         </div>
-      </div>
-      <div class="col">
-        <% if @plant.avatar.attached? %>
-        <%= image_tag @plant.avatar, class:'card-img-top image_style'%>
-        <% end %>
-      </div>
+        <div class="col">
+          <% if @plant.avatar.attached? %>
+          <%= image_tag @plant.avatar, class:'card-img-top image_style'%>
+          <% end %>
+        </div>
     </div>
   </div>
 </div>
@@ -39,7 +38,7 @@
         <div class="card h-100">
           <div >
             <% if material.avatar.attached? %>
-              <%= image_tag material.avatar, class:'card-img-top image_style'%> 
+              <%= image_tag material.avatar, class:'card-img-top image_style'%>
             <% else %>
             <% end %>
           </div>

@@ -1,7 +1,7 @@
 <div class="container p-md-5 ">
   <div class="card mb-3 ">
     <div class="row g-0">
-      
+
       <div class="col-6 ">
         <div class="card-body">
           <table class="table ">
@@ -33,8 +33,8 @@
             </tbody>
           </table>
           <%= link_to 'Back', vehicles_path , class: 'btn  btn btn-outline-dark '  %>
-          <% if @vehicle.user_id == current_user.id %>	
-            <%= link_to 'Edit', edit_vehicle_path, class: 'fas btn btn-outline-info ' %>  
+          <% if @vehicle.user_id == current_user.id %>
+            <%= link_to 'Edit', edit_vehicle_path, class: 'fas btn btn-outline-info ' %>
             <%= link_to 'Delete', @vehicle, method: :delete, data: { confirm: 'Are you sure?' }, class: 'fas btn btn-outline-danger '  %>
             <%= link_to 'Applications', vehicle_job_applications_path(vehicle_id: @vehicle.id), class:'btn btn-outline-primary'  %>
           <% else %>
@@ -47,7 +47,7 @@
             <% else %>
               <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Apply as a First Driver</button>
             <% end %>
-          
+
             <% if @vehicle.second_driver.present? %>
               <span
                 class="d-inline-block" tabindex="0" data-mdb-toggle="tooltip" title="This Session is Already Filled.">
@@ -63,7 +63,7 @@
       </div>
       <div class="col mt-3 me-1">
         <% if @vehicle.avatar.attached? %>
-          <%= image_tag @vehicle.avatar, class:'card-img-top'%> 
+          <%= image_tag @vehicle.avatar, class:'card-img-top'%>
         <% end %>
       </div>
   </div>
@@ -71,7 +71,7 @@
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Poppins" rel="stylesheet">
 <section class="section-tours">
   <div class="row style-row">
-    <% if @vehicle.first_driver.present? %> 
+    <% if @vehicle.first_driver.present? %>
       <div class="col-4">
         <div class="card card-style">
           <div class="card__side card__side--front">
@@ -82,13 +82,13 @@
               </h4>
             <div class="card-up text-center">
               <% if @vehicle.first_driver.avatar.attached? %>
-                <%= image_tag @vehicle.first_driver.avatar, class:'rounded-circle image-style'%> 
+                <%= image_tag @vehicle.first_driver.avatar, class:'rounded-circle image-style'%>
               <% end %>  
             </div>
-            
+
             <div class="card__details">
                 <ul>
-                    <li class="text-center"><%= @vehicle.first_driver.first_name %><%= @vehicle.first_driver.last_name %></li>  
+                    <li class="text-center"><%= @vehicle.first_driver.first_name %><%= @vehicle.first_driver.last_name %></li>
                 </ul>
             </div>
           </div>
@@ -114,9 +114,9 @@
               <h5 class="modal-title" id="exampleModalLabel">Apply  as a First Driver</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">  
+            <div class="modal-body">
               <%if current_user.user_type == User::USER_TYPE_FIRST_DRIVER %>
-                <%= form_with model: [ @vehicle, @vehicle.job_applications.build ] do |form| %>     
+                <%= form_with model: [ @vehicle, @vehicle.job_applications.build ] do |form| %>
                   <P>
                   <strong> Email: </strong>
                   <%= current_user.email%>
@@ -127,7 +127,7 @@
                   </p>
                   <%= form.label :content %>
                    <%= form.rich_text_area :content %>
-                  <%= form.file_field :cv, class:'form-label form-control', placeholder: 'cv'%>   
+                  <%= form.file_field :cv, class:'form-label form-control', placeholder: 'cv'%>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -141,7 +141,7 @@
         </div>
       </div>
     <% end %>
-    <% if @vehicle.second_driver.present? %> 
+    <% if @vehicle.second_driver.present? %>
       <div class="col-4">
         <div class="card">
           <div class="card__side card__side--front">
@@ -152,7 +152,7 @@
             </h4>
             <div class="card-up text-center">
               <% if @vehicle.second_driver.avatar.attached? %>
-                <%= image_tag @vehicle.second_driver.avatar, class:'rounded-circle image-style'%> 
+                <%= image_tag @vehicle.second_driver.avatar, class:'rounded-circle image-style'%>
               <% end %>  
             </div>
             <div class="card__details">
@@ -208,4 +208,3 @@
     <% end %>
   </div>
 </section><br/><br/>
-

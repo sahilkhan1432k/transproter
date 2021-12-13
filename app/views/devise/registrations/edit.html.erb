@@ -4,8 +4,8 @@
   <div class="col-2">
   </div>
   <div class="col-8">
-    <div class= "container-sm login-page align-items-stret "> 
-      <div class="text-center mt-4"></br></br>
+    <div class= "container-sm login-page align-items-center ">
+      <div class="text-center mt-4"><br><br>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
           <div class="row justify-content-md-center" style="margin-bottom: 100px;">
@@ -14,7 +14,7 @@
                   role="tabpanel"
                   aria-labelledby="tab-login">
                   <% if current_user.avatar.attached? %>
-                    <%= image_tag current_user.avatar, class: 'rounded-circle z-depth-2' %> 
+                    <%= image_tag current_user.avatar, class: 'rounded-circle z-depth-2' %>
                   <%else%>
                   <% end %><br /> <br />
                 <%= f.text_field :first_name, hautofocus: true, autocomplete: "text", class:'form-label form-control', placeholder: 'First name'  %>
@@ -26,9 +26,8 @@
                 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
                 <% end %>
-                <%= f.password_field :password, autocomplete: "new-password" ,class:'form-label form-control', placeholder: 'Password' %>
+                <%= f.password_field :password, autocomplete: "new-password" ,class:'form-label form-control', placeholder: 'New Password' %>
                 <% if @minimum_password_length %>
-                  <br />
                   <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
                 <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class:'form-label form-control', placeholder: 'Password confirmation'%>
@@ -38,10 +37,10 @@
                   <%= link_to "Cancel", :back , class:'btn btn-danger  '%>
                   <%= f.submit "Update", class:'btn btn-primary ' %><br /> Unhappy:(?
                   <%= link_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class:'text-danger' %>
-                </div>
+                </div><br>
               </div>
         <% end %>
       </div>
     </div>
   </div>
-</div></br></br></br></br></br></br></br></br></br></br></br>
+</div>

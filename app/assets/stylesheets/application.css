@@ -1,4 +1,3 @@
-
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import "bootstrap";
 @import "jumpstart/sticky-footer";
@@ -333,13 +332,21 @@ body {
   /*..........................login page.......................*/
   .login-page{
     background: #fff;
+    margin-left: 180px;
 
   }
   /*..........................sign Up page.......................*/
   .sign-up{
     background: #fff;
+    margin-left: 180px;
  }
  /*..........................vehicles.......................*/
+ .new-vehicle {
+   background: #fff;
+   text-align: center;
+
+
+ }
  .card-1 {
   height: calc(100% - 10px);
   margin-bottom: 15px;
@@ -351,9 +358,13 @@ body {
   margin: 0 auto;
   padding: 0;
 }
-.vehicle{
+.vehicle {
   background: #fff;
+  text-align: center;
+
+
 }
+
 .rounded{
   height: 260px;
   width: 370px;
@@ -370,6 +381,10 @@ body {
 .card-img-top{
   height: 168px;
 }
+.container-sm{
+  background: #fff;
+}
+
 
 /*..........................card.......................*/
 
@@ -501,10 +516,6 @@ body {
 }
 
 /*..........................chate room.......................*/
-body{
-  background-color: #f4f7f6;
-  margin-top:20px;
-}
 .card {
   background: #fff;
   transition: .5s;

@@ -1,8 +1,8 @@
-<div class = "row">
+<div class = "row_a">
   <div class="col-2">
   </div>
-  <div class="col-8">
-    <div class= "container vehicle">
+  <div>
+    <div class= "container-sm vehicle ">
       <div class="text-center mt-4"></br></br>
         <%= form_with(model: vehicle) do |form| %>
           <% if vehicle.errors.any? %>
@@ -18,7 +18,7 @@
             </div>
           <% end %>
           <div class="row justify-content-md-center">
-            <div class="col-8">
+            <div class="">
               <%= form.text_field :name, class:'form-label form-control', placeholder: 'Name'%>
               <%= form.text_field :color, class:'form-label form-control', placeholder: 'Color of Vehicle' %>
               <%= form.text_field :vehicle_number, class:'form-label form-control', placeholder: 'Vechile Number' %>
