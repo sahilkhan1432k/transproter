@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
       root to: "users#index"
     end
-  root 'rooms#index'
+   get 'rooms/index'
   resources :messages
   devise_for :users
   resources :vehicles do
@@ -35,6 +35,6 @@ Rails.application.routes.draw do
   end
   resources :messages, only: [:new, :create]
   resources :rooms
-  # root 'home#index'
+  root 'home#index'
   get 'home/about'
 end
